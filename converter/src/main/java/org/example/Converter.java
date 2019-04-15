@@ -10,9 +10,7 @@ public class Converter {
     public Converter() throws Exception {
 
         System.out.println("creating converter");
-
-        //Thread.currentThread().sleep(2000);
-
+        
         System.out.println("converter created");
 
     }
@@ -21,8 +19,8 @@ public class Converter {
         System.out.println("converting map " + map.toString());
 
         return Person.builder()
-                .first(map.get("first"))
-                .last(map.get("last"))
+                .first(map.get("first").toUpperCase())
+                .last(map.get("last").toUpperCase())
                 .build();
     }
 
