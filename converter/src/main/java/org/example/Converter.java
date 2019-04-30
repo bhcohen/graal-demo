@@ -2,35 +2,33 @@ package org.example;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class Converter {
 
     public Converter() throws Exception {
 
-        System.out.println("creating converter");
-        
-        System.out.println("converter created");
-
+        System.out.println("Java converter created");
     }
-    public  Person convert(Map<String,String> map) {
 
-        System.out.println("converting map " + map.toString());
+    public  Person convert(Person person) {
+
+        System.out.println("Java is converting " + person.toString());
 
         return Person.builder()
-                .first(map.get("first").toUpperCase())
-                .last(map.get("last").toUpperCase())
+                .first(person.getFirst().toUpperCase())
+                .last(person.getLast().toUpperCase())
                 .build();
     }
 
-    public String convertToJSON(Map<String,String> map) throws Exception {
+    public String convertToJSON(Person person) throws Exception {
 
-        Person person = convert(map);
+        Person p = convert(person);
 
         ObjectMapper objectMapper = new ObjectMapper();
 
         return objectMapper.writerWithDefaultPrettyPrinter()
-                .writeValueAsString(person);
+                .writeValueAsString(p);
     }
+
+
 }
